@@ -6,12 +6,13 @@
 if ( ! defined( 'ABSPATH' ) ) {
   exit;
 }
-$logo = sk_post_image( 'investment_logo', null, 'medium' );
-$url  = rwmb_meta( 'investment_url' );
-$el   = $url ? 'a' : 'span';
-$attr = $url ? sprintf( 'href="%s" target="_blank" rel="noopener"', esc_url( $url ) ) : '';
+$logo  = sk_post_image( 'investment_logo', null, 'large' );
+$url   = rwmb_meta( 'investment_url' );
+$el    = $url ? 'a' : 'span';
+$attr  = $url ? sprintf( 'href="%s" target="_blank" rel="noopener"', esc_url( $url ) ) : '';
+$class = $logo ? 'inv has-logo' : 'inv';
 ?>
-<<?php echo $el; ?> class="inv" <?php echo $attr; ?>>
+<<?php echo $el; ?> class="<?php echo esc_attr( $class ); ?>" <?php echo $attr; ?>>
   <?php
   if ( $logo ) {
     sk_img( $logo, get_the_title(), 'inv-logo' );
