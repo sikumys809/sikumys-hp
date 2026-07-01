@@ -24,27 +24,28 @@ function sikumys_register_meta_boxes( $meta_boxes ) {
     'fields'     => array(
       array(
         'id'   => 'service_tag',
-        'name' => __( 'Tag', 'sikumys' ),
+        'name' => __( 'タグ（例: 節税対策 × 画家支援）', 'sikumys' ),
         'type' => 'text',
       ),
       array(
         'id'   => 'service_lead',
-        'name' => __( 'Lead', 'sikumys' ),
+        'name' => __( 'カード用の短い説明', 'sikumys' ),
         'type' => 'textarea',
       ),
       array(
         'id'   => 'service_body',
-        'name' => __( 'Body', 'sikumys' ),
+        'name' => __( '詳細ページ本文（テキストのみ）', 'sikumys' ),
+        'desc' => __( '本文には画像を貼らないでください。ビジュアルは下の「画像」欄に登録します。', 'sikumys' ),
         'type' => 'wysiwyg',
       ),
       array(
         'id'   => 'service_image',
-        'name' => __( 'Image', 'sikumys' ),
+        'name' => __( '画像（TOPカード上・詳細ページ横に表示）', 'sikumys' ),
         'type' => 'single_image',
       ),
       array(
         'id'   => 'service_url',
-        'name' => __( 'Service URL', 'sikumys' ),
+        'name' => __( '外部サイトURL', 'sikumys' ),
         'type' => 'url',
       ),
     ),
@@ -61,12 +62,12 @@ function sikumys_register_meta_boxes( $meta_boxes ) {
     'fields'     => array(
       array(
         'id'   => 'investment_logo',
-        'name' => __( 'Logo', 'sikumys' ),
+        'name' => __( 'ロゴ', 'sikumys' ),
         'type' => 'single_image',
       ),
       array(
         'id'   => 'investment_url',
-        'name' => __( 'Investment URL', 'sikumys' ),
+        'name' => __( 'URL', 'sikumys' ),
         'type' => 'url',
       ),
     ),
@@ -83,12 +84,12 @@ function sikumys_register_meta_boxes( $meta_boxes ) {
     'fields'     => array(
       array(
         'id'   => 'facility_image',
-        'name' => __( 'Image', 'sikumys' ),
+        'name' => __( '画像', 'sikumys' ),
         'type' => 'single_image',
       ),
       array(
         'id'   => 'facility_address',
-        'name' => __( 'Address', 'sikumys' ),
+        'name' => __( '住所', 'sikumys' ),
         'type' => 'text',
       ),
     ),
