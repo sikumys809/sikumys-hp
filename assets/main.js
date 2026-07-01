@@ -10,4 +10,12 @@ document.addEventListener('DOMContentLoaded', function () {
       fill: 'forwards'
     });
   }
+
+  const toggle = document.getElementById('infographicToggle');
+  const infographic = document.getElementById('infographicArea');
+  if ( toggle && infographic ) {
+    toggle.addEventListener('click', function () {
+      infographic.classList.toggle('hidden');
+    });
+  }
 });

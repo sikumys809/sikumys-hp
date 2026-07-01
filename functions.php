@@ -3,6 +3,9 @@ if ( ! defined( 'ABSPATH' ) ) {
   exit;
 }
 
+define( 'SIKUMYS_SETTINGS_OPTION', 'sikumys_site_settings' );
+
+require_once get_template_directory() . '/inc/helpers.php';
 require_once get_template_directory() . '/inc/cpt.php';
 require_once get_template_directory() . '/inc/meta-box.php';
 

@@ -118,6 +118,24 @@ section + section { border-top: 1px solid var(--line); }
   background: rgba(12,20,48,0.7);
 }
 .mini-card h3 { margin: 0 0 8px; font-size: 1rem; }
+.company-table { display: grid; gap: 12px; grid-template-columns: minmax(220px, 320px) 1fr; }
+.company-row { display: contents; }
+.company-row dt { color: var(--sky); font-weight: 700; }
+.company-row dd { margin: 0 0 12px; color: var(--muted); }
+.profile-list { display: grid; gap: 14px; }
+.profile-item { display: flex; gap: 12px; flex-wrap: wrap; align-items: baseline; }
+.profile-item strong { color: var(--sky); min-width: 120px; }
+.mind-card { background: rgba(12,20,48,0.82); border: 1px solid var(--line); border-radius: 16px; padding: 28px; }
+.mind-card h3 { margin-top: 0; font-size: 1.15rem; }
+.message-grid { display: grid; gap: 24px; grid-template-columns: 360px 1fr; align-items: start; }
+.message-photo img { border-radius: 18px; width: 100%; height: auto; object-fit: cover; }
+.site-socials { display: flex; gap: 16px; flex-wrap: wrap; }
+.site-socials a { color: var(--muted); text-decoration: none; font-size: 0.85rem; }
+.site-socials a:hover { color: var(--white); }
+.hero-visual { width: 100%; max-width: 860px; margin: 36px auto 0; border-radius: 24px; }
+.cg-tag { margin-top: 24px; color: var(--sky); letter-spacing: 0.18em; font-size: 0.75rem; text-transform: uppercase; }
+.scrollcue { margin-top: 12px; color: var(--muted); letter-spacing: 0.18em; }
+.hidden { display: none !important; }
 .mini-card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
 .about-grid { display: grid; gap: 40px; grid-template-columns: 1fr 1fr; align-items: start; }
 .about-grid ul { padding-left: 18px; color: var(--muted); }
