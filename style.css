@@ -1,0 +1,138 @@
+/*
+Theme Name: Sikumys
+Theme URI: https://example.com/sikumys
+Author: Sikumys
+Description: Corporate site theme for Sikumys based on the provided mockup.
+Version: 1.0.0
+Text Domain: sikumys
+*/
+
+:root {
+  --ink: #070e21;
+  --ink2: #0c1430;
+  --sky: #4fd2f5;
+  --white: #ffffff;
+  --muted: rgba(255,255,255,0.72);
+  --line: rgba(79,210,245,0.24);
+  --maxw: 1160px;
+  --gut: clamp(20px, 4vw, 64px);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Noto Sans JP", "Segoe UI", sans-serif;
+  background: linear-gradient(180deg, #070e21 0%, #00030c 100%);
+  color: var(--white);
+  line-height: 1.8;
+}
+a { color: inherit; }
+img { max-width: 100%; height: auto; display: block; }
+.container { width: min(var(--maxw), calc(100% - (var(--gut) * 2))); margin: 0 auto; }
+section { padding: clamp(72px, 10vw, 120px) 0; }
+section + section { border-top: 1px solid var(--line); }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(7,14,33,0.86);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+}
+.site-brand {
+  font-weight: 900;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+}
+.site-brand span { color: var(--sky); }
+.site-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+.site-nav a { text-decoration: none; color: var(--muted); font-size: 0.9rem; letter-spacing: 0.16em; text-transform: uppercase; }
+.site-nav a:hover, .site-nav a.current-menu-item { color: var(--white); }
+.hero {
+  min-height: 88vh;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at top, rgba(79,210,245,0.14), transparent 45%);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(7,14,33,0.15), rgba(7,14,33,0.8));
+  pointer-events: none;
+}
+.hero .container { position: relative; z-index: 1; text-align: center; }
+.hero h1 {
+  font-size: clamp(2.2rem, 6vw, 4.8rem);
+  line-height: 1.1;
+  margin: 0 0 18px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: linear-gradient(120deg, #ffffff 30%, var(--sky) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero p { font-size: 1.1rem; color: var(--muted); max-width: 720px; margin: 0 auto; }
+.section-heading { text-align: center; margin-bottom: 48px; }
+.eyebrow {
+  color: var(--sky);
+  font-size: 0.8rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+.section-heading h2, .section-heading h3 { font-size: clamp(1.85rem, 3.2vw, 2.6rem); margin: 0 0 18px; }
+.section-heading p, .lead { color: var(--muted); max-width: 760px; margin: 0 auto; }
+.card-grid { display: grid; gap: 24px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.card {
+  background: linear-gradient(160deg, rgba(12,20,48,0.95), rgba(7,14,33,0.95));
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+}
+.card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.card-body { padding: 24px; }
+.card-tag { color: var(--sky); font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
+.card h3 { margin: 0 0 12px; font-size: 1.25rem; }
+.card p { margin: 0 0 14px; color: var(--muted); }
+.card .more { color: var(--white); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.16em; text-transform: uppercase; }
+.card .more::after { content: " →"; color: var(--sky); }
+.three-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.mini-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 24px;
+  background: rgba(12,20,48,0.7);
+}
+.mini-card h3 { margin: 0 0 8px; font-size: 1rem; }
+.mini-card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.about-grid { display: grid; gap: 40px; grid-template-columns: 1fr 1fr; align-items: start; }
+.about-grid ul { padding-left: 18px; color: var(--muted); }
+.site-footer {
+  padding: 44px 0 56px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  text-align: center;
+}
+.site-footer .brand { color: var(--white); font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; }
+.site-footer .brand span { color: var(--sky); }
+.content-block { max-width: 860px; margin: 0 auto; }
+.content-block h1 { font-size: clamp(2rem, 3vw, 2.8rem); margin-bottom: 18px; }
+.content-block p { color: var(--muted); }
+@media (max-width: 860px) {
+  .card-grid, .three-grid, .about-grid { grid-template-columns: 1fr; }
+  .site-nav { display: none; }
+}
