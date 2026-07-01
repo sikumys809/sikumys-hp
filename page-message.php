@@ -2,67 +2,65 @@
 /**
  * Template Name: Message Page
  */
+get_header(); ?>
 
-get_header();
-?>
-<main>
-  <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-    <section class="section-heading">
-      <div class="container">
-        <span class="eyebrow">Message</span>
-        <h1><?php the_title(); ?></h1>
-        <?php the_content(); ?>
-      </div>
-    </section>
-  <?php endwhile; endif; ?>
+<div class="subpage">
+  <div style="height:120px"></div>
+
+  <section class="block wrap center">
+    <span class="eyebrow">Message</span>
+    <h2 class="disp"><?php echo esc_html( get_the_title() ? get_the_title() : '代表メッセージ' ); ?></h2>
+  </section>
 
   <?php
-  $message_portrait = sk_img( 'message_portrait', 'large' );
-  $message_history  = sk_opt_group( 'message_history' );
-  $message_name     = sk_opt( 'message_name' );
+  $portrait = sk_opt_image( 'message_portrait' );
+  $name     = sk_opt( 'message_name' );
+  $lead     = sk_opt( 'message_lead' );
+  $hist     = sk_opt_group( 'message_history' );
+  $body     = sk_opt( 'message_body' );
+  $mimg     = sk_opt_image( 'message_image' );
+
+  $has_hist = false;
+  foreach ( $hist as $h ) {
+    if ( ! empty( $h['item'] ) ) {
+      $has_hist = true;
+      break;
+    }
+  }
   ?>
-  <?php if ( $message_portrait || $message_name || $message_history ) : ?>
-    <section>
-      <div class="container message-grid">
-        <?php if ( $message_portrait ) : ?>
-          <div class="message-photo"><?php echo $message_portrait; ?></div>
-        <?php endif; ?>
-        <div>
-          <div class="section-heading">
-            <span class="eyebrow">Profile</span>
-            <h2>代表プロフィール</h2>
+
+  <?php if ( $portrait || $name || $lead || $has_hist || $body ) : ?>
+    <section class="block wrap" style="padding-top:0">
+      <?php if ( $portrait || $name || $lead || $has_hist ) : ?>
+        <div class="msg-top">
+          <?php if ( $portrait ) : ?>
+            <div class="portrait"><?php sk_img( $portrait, $name ? $name : get_bloginfo( 'name' ) ); ?></div>
+          <?php endif; ?>
+          <div>
+            <?php if ( $name ) : ?><div class="msg-name"><?php echo esc_html( $name ); ?></div><?php endif; ?>
+            <?php if ( $lead ) : ?><div class="msg-jp"><?php echo nl2br( esc_html( $lead ) ); ?></div><?php endif; ?>
+            <?php if ( $has_hist ) : ?>
+              <ul>
+                <?php foreach ( $hist as $h ) : if ( empty( $h['item'] ) ) { continue; } ?>
+                  <li><?php echo esc_html( $h['item'] ); ?></li>
+                <?php endforeach; ?>
+              </ul>
+            <?php endif; ?>
           </div>
-          <?php if ( $message_name ) : ?>
-            <p class="message-name"><?php echo esc_html( $message_name ); ?></p>
-          <?php endif; ?>
-          <?php if ( $message_history ) : ?>
-            <ul class="profile-list">
-              <?php foreach ( $message_history as $entry ) : ?>
-                <?php if ( ! empty( $entry['item'] ) ) : ?>
-                  <li><?php echo esc_html( $entry['item'] ); ?></li>
-                <?php endif; ?>
-              <?php endforeach; ?>
-            </ul>
-          <?php endif; ?>
         </div>
-      </div>
+      <?php endif; ?>
+
+      <?php if ( $body ) : ?>
+        <div class="msg-body"><?php echo wp_kses_post( wpautop( $body ) ); ?></div>
+      <?php endif; ?>
     </section>
   <?php endif; ?>
 
-  <?php if ( sk_has( 'message_lead' ) || sk_has( 'message_body' ) || sk_has( 'message_image' ) ) : ?>
-    <section>
-      <div class="container message-body">
-        <?php if ( sk_img( 'message_image', 'large' ) ) : ?>
-          <div class="message-body-image"><?php echo sk_img( 'message_image', 'large' ); ?></div>
-        <?php endif; ?>
-        <?php if ( sk_has( 'message_lead' ) ) : ?>
-          <p class="message-lead"><?php echo nl2br( esc_html( sk_opt( 'message_lead' ) ) ); ?></p>
-        <?php endif; ?>
-        <?php if ( sk_has( 'message_body' ) ) : ?>
-          <div class="message-text"><?php echo wp_kses_post( wpautop( sk_opt( 'message_body' ) ) ); ?></div>
-        <?php endif; ?>
-      </div>
-    </section>
+  <?php if ( $mimg ) : ?>
+    <div class="wrap"><div class="msg-media"><?php sk_img( $mimg, get_bloginfo( 'name' ) ); ?></div></div>
   <?php endif; ?>
-</main>
+
+  <div style="height:80px"></div>
+</div>
+
 <?php get_footer(); ?>

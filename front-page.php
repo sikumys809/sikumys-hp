@@ -1,138 +1,81 @@
 <?php get_header(); ?>
-<main>
-  <section class="hero">
-    <div class="container">
-      <?php if ( sk_has( 'hero_title' ) ) : ?>
-        <h1><?php echo nl2br( esc_html( sk_opt( 'hero_title' ) ) ); ?></h1>
-      <?php else : ?>
-        <h1>CREATING EVERY<br><span>"HAPPINESS"</span><br>IN THIS WORLD.</h1>
+
+<?php if ( $hero_media = sk_opt_image( 'hero_media' ) ) : ?>
+  <video class="hero-media" src="<?php echo esc_url( $hero_media ); ?>" autoplay muted loop playsinline></video>
+<?php else : ?>
+  <canvas id="bg"></canvas>
+<?php endif; ?>
+
+<div class="hero" id="hero">
+  <div class="hero-inner" id="heroInner">
+    <?php if ( $hero_title = sk_opt( 'hero_title' ) ) : ?>
+      <h1><?php echo nl2br( esc_html( $hero_title ) ); ?></h1>
+    <?php else : ?>
+      <h1>CREATING EVERY<br><span class="acc">&quot;HAPPINESS&quot;</span><br>IN THIS WORLD.</h1>
+    <?php endif; ?>
+    <?php if ( $hero_sub = sk_opt( 'hero_sub' ) ) : ?>
+      <p class="sub"><?php echo esc_html( $hero_sub ); ?></p>
+    <?php endif; ?>
+  </div>
+  <div class="cg-tag"><span class="dot"></span>3DCG Hero — Network ／ Scroll-Driven</div>
+  <div class="scrollcue">Scroll</div>
+</div>
+
+<div class="top-body">
+
+  <?php // VISION ?>
+  <?php if ( $vision_heading = sk_opt( 'vision_heading' ) ) : ?>
+    <section class="block statement center wrap">
+      <span class="eyebrow">Vision</span>
+      <h2 class="disp"><?php echo esc_html( $vision_heading ); ?></h2>
+      <div class="divider" style="margin:34px auto"></div>
+      <?php if ( $vision_body = sk_opt( 'vision_body' ) ) : ?>
+        <p class="lead"><?php echo nl2br( esc_html( $vision_body ) ); ?></p>
       <?php endif; ?>
+    </section>
+    <?php if ( sk_opt( 'vision_infographic_on' ) ) : ?>
+      <div class="wrap infographic"><svg id="igA" viewBox="0 0 1040 520"></svg></div>
+    <?php endif; ?>
+  <?php endif; ?>
 
-      <?php if ( sk_has( 'hero_sub' ) ) : ?>
-        <p><?php echo esc_html( sk_opt( 'hero_sub' ) ); ?></p>
-      <?php else : ?>
-        <p>世の中を、もっと豊かで、便利で、楽しく。仕組みを創造して、幸せの連鎖をつくる。</p>
+  <?php // MISSION ?>
+  <?php if ( $mission_heading = sk_opt( 'mission_heading' ) ) : ?>
+    <section class="block statement center wrap">
+      <span class="eyebrow">Mission</span>
+      <h2 class="disp"><?php echo esc_html( $mission_heading ); ?></h2>
+      <div class="divider" style="margin:34px auto"></div>
+      <?php if ( $mission_body = sk_opt( 'mission_body' ) ) : ?>
+        <p class="lead"><?php echo nl2br( esc_html( $mission_body ) ); ?></p>
       <?php endif; ?>
-
-      <?php echo sk_opt_image( 'hero_media', 'full', array( 'class' => 'hero-visual', 'alt' => 'Hero image' ) ); ?>
-      <div class="cg-tag">3DCG Hero — Network ／ Scroll-Driven</div>
-      <div class="scrollcue">Scroll</div>
-    </div>
-  </section>
-
-  <?php if ( sk_has( 'vision_body' ) || sk_has( 'mission_body' ) ) : ?>
-    <section>
-      <div class="container">
-        <div class="section-heading">
-          <?php if ( sk_has( 'vision_body' ) ) : ?>
-            <span class="eyebrow">Vision</span>
-            <?php if ( sk_has( 'vision_heading' ) ) : ?>
-              <h2><?php echo esc_html( sk_opt( 'vision_heading' ) ); ?></h2>
-            <?php endif; ?>
-            <p><?php echo nl2br( esc_html( sk_opt( 'vision_body' ) ) ); ?></p>
-          <?php endif; ?>
-
-          <?php if ( sk_has( 'mission_body' ) ) : ?>
-            <span class="eyebrow">Mission</span>
-            <?php if ( sk_has( 'mission_heading' ) ) : ?>
-              <h2><?php echo esc_html( sk_opt( 'mission_heading' ) ); ?></h2>
-            <?php endif; ?>
-            <p><?php echo nl2br( esc_html( sk_opt( 'mission_body' ) ) ); ?></p>
-          <?php endif; ?>
-        </div>
-      </div>
     </section>
   <?php endif; ?>
 
-  <?php
-  $services = sk_query( array(
-    'post_type' => 'service',
-    'posts_per_page' => 4,
-    'orderby' => 'menu_order',
-    'order'   => 'ASC',
-  ) );
-  if ( $services->have_posts() ) :
-  ?>
-    <section>
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Service</span>
-          <h2>事業紹介</h2>
-        </div>
-        <div class="card-grid">
-          <?php while ( $services->have_posts() ) : $services->the_post(); ?>
-            <?php
-            $service_image = sk_meta_image( 'service_image', 'large' );
-            $service_tag   = rwmb_meta( 'service_tag' );
-            $service_lead  = rwmb_meta( 'service_lead' );
-            ?>
-            <article class="card">
-              <?php if ( $service_image ) : ?>
-                <a href="<?php the_permalink(); ?>"><?php echo $service_image; ?></a>
-              <?php endif; ?>
-              <div class="card-body">
-                <div class="card-tag"><?php echo esc_html( $service_tag ? $service_tag : __( 'Service', 'sikumys' ) ); ?></div>
-                <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                <?php if ( $service_lead ) : ?>
-                  <p><?php echo esc_html( $service_lead ); ?></p>
-                <?php endif; ?>
-                <a class="more" href="<?php the_permalink(); ?>">View More</a>
-              </div>
-            </article>
-          <?php endwhile; ?>
-        </div>
+  <?php // SERVICE ?>
+  <?php $svc = sk_query( 'service' ); if ( $svc->have_posts() ) : ?>
+    <section class="block wrap center">
+      <?php get_template_part( 'template-parts/section-heading', null, array( 'eyebrow' => 'Service', 'title' => '事業紹介' ) ); ?>
+      <div class="svc-grid">
+        <?php while ( $svc->have_posts() ) : $svc->the_post(); ?>
+          <?php get_template_part( 'template-parts/card', 'service' ); ?>
+        <?php endwhile; ?>
       </div>
     </section>
     <?php wp_reset_postdata(); ?>
   <?php endif; ?>
 
-  <?php
-  $investments = sk_query( array(
-    'post_type' => 'investment',
-    'posts_per_page' => 6,
-    'orderby' => 'menu_order',
-    'order'   => 'ASC',
-  ) );
-  if ( $investments->have_posts() ) :
-  ?>
-    <section>
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Investment</span>
-          <h2>投資先紹介</h2>
-        </div>
-        <div class="three-grid">
-          <?php while ( $investments->have_posts() ) : $investments->the_post(); ?>
-            <?php
-            $investment_logo = sk_meta_image( 'investment_logo', 'medium' );
-            $investment_url  = rwmb_meta( 'investment_url' );
-            ?>
-            <article class="mini-card">
-              <?php if ( $investment_logo ) : ?>
-                <div class="mini-logo"><?php echo $investment_logo; ?></div>
-              <?php endif; ?>
-              <h3><?php the_title(); ?></h3>
-              <?php if ( $investment_url ) : ?>
-                <a class="more" href="<?php echo esc_url( $investment_url ); ?>" target="_blank" rel="noopener noreferrer">View More</a>
-              <?php endif; ?>
-            </article>
-          <?php endwhile; ?>
-        </div>
+  <?php // INVESTMENT ?>
+  <?php $inv = sk_query( 'investment' ); if ( $inv->have_posts() ) : ?>
+    <section class="block wrap center">
+      <?php get_template_part( 'template-parts/section-heading', null, array( 'eyebrow' => 'Investment', 'title' => '投資先' ) ); ?>
+      <div class="inv-grid">
+        <?php while ( $inv->have_posts() ) : $inv->the_post(); ?>
+          <?php get_template_part( 'template-parts/item', 'investment' ); ?>
+        <?php endwhile; ?>
       </div>
     </section>
     <?php wp_reset_postdata(); ?>
   <?php endif; ?>
 
-  <?php if ( sk_has( 'message_lead' ) ) : ?>
-    <section>
-      <div class="container about-grid">
-        <div>
-          <span class="eyebrow">Message</span>
-          <h2>代表メッセージ</h2>
-          <p><?php echo nl2br( esc_html( sk_opt( 'message_lead' ) ) ); ?></p>
-        </div>
-      </div>
-    </section>
-  <?php endif; ?>
-</main>
+</div>
+
 <?php get_footer(); ?>

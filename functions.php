@@ -22,7 +22,13 @@ function sikumys_setup() {
 add_action( 'after_setup_theme', 'sikumys_setup' );
 
 function sikumys_assets() {
-  wp_enqueue_style( 'sikumys-style', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
+  wp_enqueue_style(
+    'sikumys-fonts',
+    'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap',
+    array(),
+    null
+  );
+  wp_enqueue_style( 'sikumys-style', get_stylesheet_uri(), array( 'sikumys-fonts' ), wp_get_theme()->get( 'Version' ) );
   wp_enqueue_script( 'sikumys-scripts', get_template_directory_uri() . '/assets/main.js', array(), wp_get_theme()->get( 'Version' ), true );
 }
 add_action( 'wp_enqueue_scripts', 'sikumys_assets' );

@@ -2,79 +2,58 @@
 /**
  * Template Name: Overview Page
  */
+get_header(); ?>
 
-get_header();
-?>
-<main>
-  <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-    <section class="section-heading">
-      <div class="container">
-        <span class="eyebrow">Overview</span>
-        <h1><?php the_title(); ?></h1>
-        <?php the_content(); ?>
-      </div>
-    </section>
-  <?php endwhile; endif; ?>
+<div class="subpage">
+  <div style="height:120px"></div>
 
-  <?php $company_info = sk_opt_group( 'company_info' ); ?>
-  <?php if ( $company_info ) : ?>
-    <section>
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Company</span>
-          <h2>会社概要</h2>
-        </div>
-        <dl class="company-table">
-          <?php foreach ( $company_info as $row ) : ?>
-            <?php if ( ! empty( $row['label'] ) && ! empty( $row['value'] ) ) : ?>
-              <div class="company-row">
-                <dt><?php echo esc_html( $row['label'] ); ?></dt>
-                <dd><?php echo nl2br( esc_html( $row['value'] ) ); ?></dd>
-              </div>
-            <?php endif; ?>
-          <?php endforeach; ?>
-        </dl>
-      </div>
-    </section>
+  <section class="block wrap center">
+    <span class="eyebrow">Overview</span>
+    <h2 class="disp"><?php echo esc_html( get_the_title() ? get_the_title() : '会社概要' ); ?></h2>
+  </section>
+
+  <?php if ( $ov_logo = sk_opt_image( 'overview_logo' ) ) : ?>
+    <div class="ov-logo"><?php sk_img( $ov_logo, get_bloginfo( 'name' ) ); ?></div>
   <?php endif; ?>
 
   <?php
-  $facilities = sk_query( array(
-    'post_type' => 'facility',
-    'posts_per_page' => 6,
-    'orderby' => 'menu_order',
-    'order'   => 'ASC',
-  ) );
-  if ( $facilities->have_posts() ) :
+  $rows     = sk_opt_group( 'company_info' );
+  $has_rows = false;
+  foreach ( $rows as $row ) {
+    if ( ! empty( $row['label'] ) || ! empty( $row['value'] ) ) {
+      $has_rows = true;
+      break;
+    }
+  }
   ?>
-    <section>
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Facility</span>
-          <h2>事業所ギャラリー</h2>
-        </div>
-        <div class="card-grid">
-          <?php while ( $facilities->have_posts() ) : $facilities->the_post(); ?>
-            <?php
-            $facility_image   = sk_meta_image( 'facility_image', 'large' );
-            $facility_address = function_exists( 'rwmb_meta' ) ? rwmb_meta( 'facility_address' ) : '';
-            ?>
-            <article class="card">
-              <?php if ( $facility_image ) : ?>
-                <div class="card-media"><?php echo $facility_image; ?></div>
-              <?php endif; ?>
-              <div class="card-body">
-                <h3><?php the_title(); ?></h3>
-                <?php if ( $facility_address ) : ?>
-                  <p><?php echo esc_html( $facility_address ); ?></p>
-                <?php endif; ?>
-              </div>
-            </article>
-          <?php endwhile; ?>
-        </div>
-      </div>
+  <?php if ( $has_rows ) : ?>
+    <section class="block wrap">
+      <div class="ov"><dl>
+        <?php
+        foreach ( $rows as $row ) :
+          $label = isset( $row['label'] ) ? $row['label'] : '';
+          $value = isset( $row['value'] ) ? $row['value'] : '';
+          if ( ! $label && ! $value ) {
+            continue;
+          }
+          ?>
+          <dt><?php echo esc_html( $label ); ?></dt>
+          <dd><?php echo nl2br( esc_html( $value ) ); ?></dd>
+        <?php endforeach; ?>
+      </dl></div>
     </section>
+  <?php endif; ?>
+
+  <?php $fac = sk_query( 'facility' ); if ( $fac->have_posts() ) : ?>
+    <div class="wrap gallery-grid">
+      <?php while ( $fac->have_posts() ) : $fac->the_post(); ?>
+        <?php get_template_part( 'template-parts/card', 'facility' ); ?>
+      <?php endwhile; ?>
+    </div>
     <?php wp_reset_postdata(); ?>
   <?php endif; ?>
-</main>
+
+  <div style="height:80px"></div>
+</div>
+
 <?php get_footer(); ?>
