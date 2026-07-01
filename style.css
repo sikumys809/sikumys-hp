@@ -337,3 +337,8 @@ footer .fnav a:hover{color:var(--sky)}
 .subpage{background:linear-gradient(180deg,rgba(7,14,33,.64),rgba(3,6,16,.80))}
 .subpage h2,.subpage .msg-jp,.subpage .en-big,.subpage .msg-body p,.subpage .mind p,.subpage .ov dd,.subpage .ov dt{text-shadow:0 2px 16px rgba(0,0,0,.55)}
 .drawer a.active{color:var(--sky)}
+/* wysiwyg本文に埋め込まれた画像は幅内ブロック化して回り込みを防ぐ */
+.svc-detail .txtcol img,.svc .body img{max-width:100%;height:auto;display:block;margin:6px 0 18px}
+.msg-body img{max-width:100%;height:auto;display:block;margin:10px auto 22px}
+/* 画像(service_image)が無い詳細は1カラム（テキスト全幅） */
+.svc-detail.no-media{grid-template-columns:1fr}

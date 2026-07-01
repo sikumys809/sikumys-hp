@@ -14,7 +14,7 @@ $image   = sk_post_image( 'service_image', null, 'large' );
 $url     = rwmb_meta( 'service_url' );
 
 if ( 'detail' === $variant ) : ?>
-  <div class="svc-detail">
+  <div class="svc-detail<?php echo $image ? '' : ' no-media'; ?>">
     <div class="txtcol">
       <?php sk_echo( esc_html( $tag ), '<div class="tag">', '</div>' ); ?>
       <h3><?php the_title(); ?></h3>
