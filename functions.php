@@ -29,7 +29,26 @@ function sikumys_assets() {
     null
   );
   wp_enqueue_style( 'sikumys-style', get_stylesheet_uri(), array( 'sikumys-fonts' ), wp_get_theme()->get( 'Version' ) );
-  wp_enqueue_script( 'sikumys-scripts', get_template_directory_uri() . '/assets/main.js', array(), wp_get_theme()->get( 'Version' ), true );
+
+  $ver = wp_get_theme()->get( 'Version' );
+  $dir = get_template_directory_uri();
+
+  // UI 挙動（ヘッダー縮小・ドロワー・ヒーローパララックス）は全ページ。
+  wp_enqueue_script( 'sikumys-scripts', $dir . '/assets/main.js', array(), $ver, true );
+
+  $is_front    = is_front_page();
+  $is_philo    = ( 'philosophy' === get_query_var( 'sk_page' ) );
+
+  // トップのみ: Three.js 本体 → hero.js（NETWORK）。
+  if ( $is_front ) {
+    wp_enqueue_script( 'three', 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', array(), 'r128', true );
+    wp_enqueue_script( 'sikumys-hero', $dir . '/assets/hero.js', array( 'three' ), $ver, true );
+  }
+
+  // インフォグラフィックは図が出るページ（トップ=VISION / Philosophy）。
+  if ( $is_front || $is_philo ) {
+    wp_enqueue_script( 'sikumys-infographic', $dir . '/assets/infographic.js', array(), $ver, true );
+  }
 }
 add_action( 'wp_enqueue_scripts', 'sikumys_assets' );
 

@@ -1,7 +1,12 @@
 <?php get_header(); ?>
 
 <?php if ( $hero_media = sk_opt_image( 'hero_media' ) ) : ?>
-  <video class="hero-media" src="<?php echo esc_url( $hero_media ); ?>" autoplay muted loop playsinline></video>
+  <?php $hero_ext = strtolower( pathinfo( (string) parse_url( $hero_media, PHP_URL_PATH ), PATHINFO_EXTENSION ) ); ?>
+  <?php if ( in_array( $hero_ext, array( 'jpg', 'jpeg', 'png', 'gif', 'webp', 'avif', 'svg' ), true ) ) : ?>
+    <img class="hero-media" src="<?php echo esc_url( $hero_media ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+  <?php else : ?>
+    <video class="hero-media" src="<?php echo esc_url( $hero_media ); ?>" autoplay muted loop playsinline></video>
+  <?php endif; ?>
 <?php else : ?>
   <canvas id="bg"></canvas>
 <?php endif; ?>
