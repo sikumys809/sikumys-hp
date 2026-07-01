@@ -64,22 +64,12 @@ function sikumys_seed_cpt( $type, $title, $order, $meta ) {
   return $id;
 }
 
-/* ---- 画像（ロゴZIPを一時展開して登録） ---- */
+/* ---- 画像（ダーク背景用の白ロゴ・余白トリム済みを登録） ---- */
 echo "=== images ===\n";
-$logo_wide = 0; $logo_mark = 0;
-$tmp = trailingslashit( get_temp_dir() ) . 'sikumys-rogo-' . wp_generate_password( 6, false );
-if ( class_exists( 'ZipArchive' ) && file_exists( $THEME . '/sikumys-rogo-03.zip' ) ) {
-  wp_mkdir_p( $tmp );
-  $zip = new ZipArchive();
-  if ( true === $zip->open( $THEME . '/sikumys-rogo-03.zip' ) ) {
-    $zip->extractTo( $tmp );
-    $zip->close();
-  }
-  $logo_wide = sikumys_seed_attachment( $tmp . '/sikumys-rogo-03.png', 'logo_wide', 'SIKUMYS ロゴ' );
-  $logo_mark = sikumys_seed_attachment( $tmp . '/sikumys-rogo-02.png', 'logo_mark', 'SIKUMYS マーク' );
-}
-$portrait = sikumys_seed_attachment( $THEME . '/水野永吉.png', 'portrait', '水野永吉' );
-echo "  logo_wide=$logo_wide logo_mark=$logo_mark portrait=$portrait\n";
+$logo_header = sikumys_seed_attachment( $THEME . '/assets/img/logo-header.png', 'logo_header_white', 'SIKUMYS ロゴ（白・横）' );
+$logo_mark   = sikumys_seed_attachment( $THEME . '/assets/img/logo-mark.png', 'logo_mark_white', 'SIKUMYS マーク（白）' );
+$portrait    = sikumys_seed_attachment( $THEME . '/水野永吉.png', 'portrait', '水野永吉' );
+echo "  logo_header=$logo_header logo_mark=$logo_mark portrait=$portrait\n";
 
 /* ---- 1. サイト設定 ---- */
 echo "=== settings ===\n";
@@ -87,8 +77,8 @@ $opt = get_option( SIKUMYS_SETTINGS_OPTION );
 if ( ! is_array( $opt ) ) {
   $opt = array();
 }
-$opt['logo_header']      = $logo_wide ?: '';
-$opt['logo_footer']      = $logo_wide ?: '';
+$opt['logo_header']      = $logo_header ?: '';
+$opt['logo_footer']      = $logo_header ?: '';
 $opt['overview_logo']    = $logo_mark ?: '';
 $opt['message_portrait'] = $portrait ?: '';
 

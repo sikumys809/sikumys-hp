@@ -17,20 +17,20 @@
     <?php endif; ?>
   </a>
   <nav>
-    <a href="<?php echo esc_url( home_url( '/overview' ) ); ?>">Overview</a>
-    <a href="<?php echo esc_url( home_url( '/message' ) ); ?>">Message</a>
-    <a href="<?php echo esc_url( home_url( '/philosophy' ) ); ?>">Philosophy</a>
-    <a href="<?php echo esc_url( home_url( '/service' ) ); ?>">Service &amp; Investment</a>
+    <a class="<?php echo esc_attr( sk_nav_active( 'overview' ) ); ?>" href="<?php echo esc_url( home_url( '/overview' ) ); ?>">Overview</a>
+    <a class="<?php echo esc_attr( sk_nav_active( 'message' ) ); ?>" href="<?php echo esc_url( home_url( '/message' ) ); ?>">Message</a>
+    <a class="<?php echo esc_attr( sk_nav_active( 'philosophy' ) ); ?>" href="<?php echo esc_url( home_url( '/philosophy' ) ); ?>">Philosophy</a>
+    <a class="<?php echo esc_attr( sk_nav_active( 'service' ) ); ?>" href="<?php echo esc_url( home_url( '/service' ) ); ?>">Service &amp; Investment</a>
   </nav>
   <button class="burger" id="burger" aria-label="menu"><span></span><span></span><span></span></button>
 </header>
 
 <div class="drawer" id="drawer">
-  <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><span class="dn">Top</span><span class="dj">トップ</span></a>
-  <a href="<?php echo esc_url( home_url( '/overview' ) ); ?>"><span class="dn">Overview</span><span class="dj">概要</span></a>
-  <a href="<?php echo esc_url( home_url( '/message' ) ); ?>"><span class="dn">Message</span><span class="dj">代表挨拶</span></a>
-  <a href="<?php echo esc_url( home_url( '/philosophy' ) ); ?>"><span class="dn">Philosophy</span><span class="dj">企業理念</span></a>
-  <a href="<?php echo esc_url( home_url( '/service' ) ); ?>"><span class="dn">Service &amp; Investment</span><span class="dj">事業紹介＆投資先</span></a>
+  <a class="<?php echo esc_attr( sk_nav_active( 'top' ) ); ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>"><span class="dn">Top</span><span class="dj">トップ</span></a>
+  <a class="<?php echo esc_attr( sk_nav_active( 'overview' ) ); ?>" href="<?php echo esc_url( home_url( '/overview' ) ); ?>"><span class="dn">Overview</span><span class="dj">概要</span></a>
+  <a class="<?php echo esc_attr( sk_nav_active( 'message' ) ); ?>" href="<?php echo esc_url( home_url( '/message' ) ); ?>"><span class="dn">Message</span><span class="dj">代表挨拶</span></a>
+  <a class="<?php echo esc_attr( sk_nav_active( 'philosophy' ) ); ?>" href="<?php echo esc_url( home_url( '/philosophy' ) ); ?>"><span class="dn">Philosophy</span><span class="dj">企業理念</span></a>
+  <a class="<?php echo esc_attr( sk_nav_active( 'service' ) ); ?>" href="<?php echo esc_url( home_url( '/service' ) ); ?>"><span class="dn">Service &amp; Investment</span><span class="dj">事業紹介＆投資先</span></a>
 </div>
 
 <main>

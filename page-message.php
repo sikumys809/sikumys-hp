@@ -9,7 +9,7 @@ get_header(); ?>
 
   <section class="block wrap center">
     <span class="eyebrow">Message</span>
-    <h2 class="disp"><?php echo esc_html( get_the_title() ? get_the_title() : '代表メッセージ' ); ?></h2>
+    <h2 class="disp">代表メッセージ</h2>
   </section>
 
   <?php

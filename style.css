@@ -336,3 +336,4 @@ footer .fnav a:hover{color:var(--sky)}
 /* sub-page wrappers (replaces mock #page-* SPA sections) */
 .subpage{background:linear-gradient(180deg,rgba(7,14,33,.64),rgba(3,6,16,.80))}
 .subpage h2,.subpage .msg-jp,.subpage .en-big,.subpage .msg-body p,.subpage .mind p,.subpage .ov dd,.subpage .ov dt{text-shadow:0 2px 16px rgba(0,0,0,.55)}
+.drawer a.active{color:var(--sky)}

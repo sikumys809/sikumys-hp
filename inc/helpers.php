@@ -131,6 +131,20 @@ function sk_page_url( $template ) {
   return $url;
 }
 
+/** 現在のナビ位置（top / overview / message / philosophy / service）。 */
+function sk_nav_current() {
+  $sk = get_query_var( 'sk_page' );
+  if ( $sk ) {
+    return $sk;
+  }
+  return is_front_page() ? 'top' : '';
+}
+
+/** 現在ナビと一致すれば ' active' を返す（class属性用）。 */
+function sk_nav_active( $slug ) {
+  return sk_nav_current() === $slug ? 'active' : '';
+}
+
 /** SNS アイコン SVG（モック準拠）。未知スラッグは空文字。 */
 function sk_svg_icon( $slug ) {
   $icons = array(

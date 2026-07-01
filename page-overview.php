@@ -9,7 +9,7 @@ get_header(); ?>
 
   <section class="block wrap center">
     <span class="eyebrow">Overview</span>
-    <h2 class="disp"><?php echo esc_html( get_the_title() ? get_the_title() : '会社概要' ); ?></h2>
+    <h2 class="disp">会社概要</h2>
   </section>
 
   <?php if ( $ov_logo = sk_opt_image( 'overview_logo' ) ) : ?>
