@@ -16,8 +16,8 @@ get_header();
     </section>
   <?php endwhile; endif; ?>
 
-  <?php $company_table = sk_opt_group( 'company_table' ); ?>
-  <?php if ( $company_table ) : ?>
+  <?php $company_info = sk_opt_group( 'company_info' ); ?>
+  <?php if ( $company_info ) : ?>
     <section>
       <div class="container">
         <div class="section-heading">
@@ -25,11 +25,11 @@ get_header();
           <h2>会社概要</h2>
         </div>
         <dl class="company-table">
-          <?php foreach ( $company_table as $row ) : ?>
-            <?php if ( ! empty( $row['company_field_name'] ) && ! empty( $row['company_field_value'] ) ) : ?>
+          <?php foreach ( $company_info as $row ) : ?>
+            <?php if ( ! empty( $row['label'] ) && ! empty( $row['value'] ) ) : ?>
               <div class="company-row">
-                <dt><?php echo esc_html( $row['company_field_name'] ); ?></dt>
-                <dd><?php echo esc_html( $row['company_field_value'] ); ?></dd>
+                <dt><?php echo esc_html( $row['label'] ); ?></dt>
+                <dd><?php echo nl2br( esc_html( $row['value'] ) ); ?></dd>
               </div>
             <?php endif; ?>
           <?php endforeach; ?>
@@ -55,17 +55,18 @@ get_header();
         </div>
         <div class="card-grid">
           <?php while ( $facilities->have_posts() ) : $facilities->the_post(); ?>
+            <?php
+            $facility_image   = sk_meta_image( 'facility_image', 'large' );
+            $facility_address = function_exists( 'rwmb_meta' ) ? rwmb_meta( 'facility_address' ) : '';
+            ?>
             <article class="card">
-              <?php if ( has_post_thumbnail() ) : ?>
-                <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'large' ); ?></a>
+              <?php if ( $facility_image ) : ?>
+                <div class="card-media"><?php echo $facility_image; ?></div>
               <?php endif; ?>
               <div class="card-body">
-                <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                <?php if ( function_exists( 'rwmb_meta' ) ) : ?>
-                  <?php $address = rwmb_meta( 'facility_address' ); ?>
-                  <?php $hours = rwmb_meta( 'facility_hours' ); ?>
-                  <?php if ( $address ) : ?><p><?php echo esc_html( $address ); ?></p><?php endif; ?>
-                  <?php if ( $hours ) : ?><p><?php echo esc_html( $hours ); ?></p><?php endif; ?>
+                <h3><?php the_title(); ?></h3>
+                <?php if ( $facility_address ) : ?>
+                  <p><?php echo esc_html( $facility_address ); ?></p>
                 <?php endif; ?>
               </div>
             </article>

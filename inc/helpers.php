@@ -65,6 +65,33 @@ function sk_opt_image( $key, $size = 'full', $attrs = array() ) {
   return sk_img( $key, $size, $attrs );
 }
 
+function sk_meta_image( $field, $size = 'large', $attrs = array() ) {
+  if ( ! function_exists( 'rwmb_meta' ) ) {
+    return '';
+  }
+
+  $value = rwmb_meta( $field, array( 'size' => $size ) );
+  if ( empty( $value ) ) {
+    return '';
+  }
+
+  // single_image は単一の画像配列、image_advanced/file_advanced は配列の配列を返す。
+  if ( isset( $value['ID'] ) ) {
+    $id = $value['ID'];
+  } elseif ( is_array( $value ) ) {
+    $first = reset( $value );
+    if ( is_array( $first ) && isset( $first['ID'] ) ) {
+      $id = $first['ID'];
+    } else {
+      $id = is_numeric( $first ) ? $first : 0;
+    }
+  } else {
+    $id = is_numeric( $value ) ? $value : 0;
+  }
+
+  return $id ? wp_get_attachment_image( intval( $id ), $size, false, $attrs ) : '';
+}
+
 function sk_post_image( $size = 'full', $attrs = array() ) {
   if ( ! has_post_thumbnail() ) {
     return '';

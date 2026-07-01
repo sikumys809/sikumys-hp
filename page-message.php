@@ -16,33 +16,51 @@ get_header();
     </section>
   <?php endwhile; endif; ?>
 
-  <?php $profile_entries = sk_opt_group( 'profile_entries' ); ?>
-  <?php $representative_photo = sk_opt( 'representative_photo' ); ?>
-  <?php $representative_photo_id = is_array( $representative_photo ) ? intval( reset( $representative_photo ) ) : intval( $representative_photo ); ?>
-  <?php if ( $profile_entries || $representative_photo_id ) : ?>
+  <?php
+  $message_portrait = sk_img( 'message_portrait', 'large' );
+  $message_history  = sk_opt_group( 'message_history' );
+  $message_name     = sk_opt( 'message_name' );
+  ?>
+  <?php if ( $message_portrait || $message_name || $message_history ) : ?>
     <section>
       <div class="container message-grid">
-        <?php if ( $representative_photo_id ) : ?>
-          <div class="message-photo">
-            <?php echo wp_get_attachment_image( $representative_photo_id, 'large' ); ?>
-          </div>
+        <?php if ( $message_portrait ) : ?>
+          <div class="message-photo"><?php echo $message_portrait; ?></div>
         <?php endif; ?>
         <div>
           <div class="section-heading">
             <span class="eyebrow">Profile</span>
             <h2>代表プロフィール</h2>
           </div>
-          <div class="profile-list">
-            <?php foreach ( $profile_entries as $entry ) : ?>
-              <?php if ( ! empty( $entry['profile_label'] ) && ! empty( $entry['profile_value'] ) ) : ?>
-                <div class="profile-item">
-                  <strong><?php echo esc_html( $entry['profile_label'] ); ?>:</strong>
-                  <span><?php echo esc_html( $entry['profile_value'] ); ?></span>
-                </div>
-              <?php endif; ?>
-            <?php endforeach; ?>
-          </div>
+          <?php if ( $message_name ) : ?>
+            <p class="message-name"><?php echo esc_html( $message_name ); ?></p>
+          <?php endif; ?>
+          <?php if ( $message_history ) : ?>
+            <ul class="profile-list">
+              <?php foreach ( $message_history as $entry ) : ?>
+                <?php if ( ! empty( $entry['item'] ) ) : ?>
+                  <li><?php echo esc_html( $entry['item'] ); ?></li>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            </ul>
+          <?php endif; ?>
         </div>
+      </div>
+    </section>
+  <?php endif; ?>
+
+  <?php if ( sk_has( 'message_lead' ) || sk_has( 'message_body' ) || sk_has( 'message_image' ) ) : ?>
+    <section>
+      <div class="container message-body">
+        <?php if ( sk_img( 'message_image', 'large' ) ) : ?>
+          <div class="message-body-image"><?php echo sk_img( 'message_image', 'large' ); ?></div>
+        <?php endif; ?>
+        <?php if ( sk_has( 'message_lead' ) ) : ?>
+          <p class="message-lead"><?php echo nl2br( esc_html( sk_opt( 'message_lead' ) ) ); ?></p>
+        <?php endif; ?>
+        <?php if ( sk_has( 'message_body' ) ) : ?>
+          <div class="message-text"><?php echo wp_kses_post( wpautop( sk_opt( 'message_body' ) ) ); ?></div>
+        <?php endif; ?>
       </div>
     </section>
   <?php endif; ?>

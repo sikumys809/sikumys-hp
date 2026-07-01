@@ -16,12 +16,35 @@ get_header();
     </section>
   <?php endwhile; endif; ?>
 
-  <?php if ( sk_has( 'philosophy_text' ) ) : ?>
+  <?php if ( sk_has( 'philosophy_heading' ) || sk_has( 'philosophy_body' ) ) : ?>
+    <section>
+      <div class="container">
+        <div class="section-heading">
+          <?php if ( sk_has( 'philosophy_heading' ) ) : ?>
+            <h2><?php echo esc_html( sk_opt( 'philosophy_heading' ) ); ?></h2>
+          <?php endif; ?>
+          <?php if ( sk_has( 'philosophy_body' ) ) : ?>
+            <p><?php echo nl2br( esc_html( sk_opt( 'philosophy_body' ) ) ); ?></p>
+          <?php endif; ?>
+        </div>
+      </div>
+    </section>
+  <?php endif; ?>
+
+  <?php if ( sk_has( 'mind_en' ) || sk_has( 'mind_jp' ) || sk_has( 'mind_body' ) ) : ?>
     <section>
       <div class="container">
         <div class="section-heading">
           <span class="eyebrow">Mind</span>
-          <p><?php echo esc_html( sk_opt( 'philosophy_text' ) ); ?></p>
+          <?php if ( sk_has( 'mind_en' ) ) : ?>
+            <h2><?php echo esc_html( sk_opt( 'mind_en' ) ); ?></h2>
+          <?php endif; ?>
+          <?php if ( sk_has( 'mind_jp' ) ) : ?>
+            <p class="mind-jp"><?php echo esc_html( sk_opt( 'mind_jp' ) ); ?></p>
+          <?php endif; ?>
+          <?php if ( sk_has( 'mind_body' ) ) : ?>
+            <p><?php echo nl2br( esc_html( sk_opt( 'mind_body' ) ) ); ?></p>
+          <?php endif; ?>
         </div>
       </div>
     </section>

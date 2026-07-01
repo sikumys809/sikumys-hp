@@ -10,7 +10,9 @@
 <header class="site-header">
   <div class="container">
     <div class="site-brand-wrap">
-      <?php if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) : ?>
+      <?php if ( sk_has( 'logo_header' ) ) : ?>
+        <a class="site-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php echo sk_img( 'logo_header', 'full', array( 'alt' => get_bloginfo( 'name' ) ) ); ?></a>
+      <?php elseif ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) : ?>
         <?php the_custom_logo(); ?>
       <?php else : ?>
         <a class="site-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?><span> INC.</span></a>
@@ -32,9 +34,10 @@
 
     <?php
     $socials = array_filter( array(
-      'twitter'   => sk_opt( 'social_twitter' ),
-      'instagram' => sk_opt( 'social_instagram' ),
-      'linkedin'  => sk_opt( 'social_linkedin' ),
+      'facebook'  => sk_opt( 'sns_facebook' ),
+      'youtube'   => sk_opt( 'sns_youtube' ),
+      'instagram' => sk_opt( 'sns_instagram' ),
+      'x'         => sk_opt( 'sns_x' ),
     ) );
     if ( $socials ) :
     ?>
