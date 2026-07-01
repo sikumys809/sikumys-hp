@@ -328,7 +328,8 @@ footer .fnav a:hover{color:var(--sky)}
 .svc-media img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
 .svc-detail .svc-media{border-bottom:0}
 .svc-detail .svc-media img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border:1px solid var(--line)}
-.inv img.inv-logo{max-width:72%;max-height:60%;object-fit:contain;filter:drop-shadow(0 0 20px rgba(79,210,245,.2))}
+.inv{padding:clamp(16px,2.2vw,30px)}
+.inv img.inv-logo{width:100%;height:100%;object-fit:contain;display:block}
 .gmedia{overflow:hidden}
 .gmedia img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border:1px solid var(--line)}
 .msg-media{max-width:1000px;margin:0 auto}
