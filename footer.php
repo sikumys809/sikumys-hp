@@ -14,10 +14,10 @@
   <?php endif; ?>
 
   <nav class="fnav">
-    <a href="<?php echo esc_url( sk_page_url( 'page-overview.php' ) ); ?>">Overview</a>
-    <a href="<?php echo esc_url( sk_page_url( 'page-message.php' ) ); ?>">Message</a>
-    <a href="<?php echo esc_url( sk_page_url( 'page-philosophy.php' ) ); ?>">Philosophy</a>
-    <a href="<?php echo esc_url( sk_page_url( 'page-service.php' ) ); ?>">Service &amp; Investment</a>
+    <a href="<?php echo esc_url( home_url( '/overview' ) ); ?>">Overview</a>
+    <a href="<?php echo esc_url( home_url( '/message' ) ); ?>">Message</a>
+    <a href="<?php echo esc_url( home_url( '/philosophy' ) ); ?>">Philosophy</a>
+    <a href="<?php echo esc_url( home_url( '/service' ) ); ?>">Service &amp; Investment</a>
   </nav>
 
   <?php

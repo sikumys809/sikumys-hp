@@ -17,20 +17,20 @@
     <?php endif; ?>
   </a>
   <nav>
-    <a href="<?php echo esc_url( sk_page_url( 'page-overview.php' ) ); ?>">Overview</a>
-    <a href="<?php echo esc_url( sk_page_url( 'page-message.php' ) ); ?>">Message</a>
-    <a href="<?php echo esc_url( sk_page_url( 'page-philosophy.php' ) ); ?>">Philosophy</a>
-    <a href="<?php echo esc_url( sk_page_url( 'page-service.php' ) ); ?>">Service &amp; Investment</a>
+    <a href="<?php echo esc_url( home_url( '/overview' ) ); ?>">Overview</a>
+    <a href="<?php echo esc_url( home_url( '/message' ) ); ?>">Message</a>
+    <a href="<?php echo esc_url( home_url( '/philosophy' ) ); ?>">Philosophy</a>
+    <a href="<?php echo esc_url( home_url( '/service' ) ); ?>">Service &amp; Investment</a>
   </nav>
   <button class="burger" id="burger" aria-label="menu"><span></span><span></span><span></span></button>
 </header>
 
 <div class="drawer" id="drawer">
   <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><span class="dn">Top</span><span class="dj">トップ</span></a>
-  <a href="<?php echo esc_url( sk_page_url( 'page-overview.php' ) ); ?>"><span class="dn">Overview</span><span class="dj">概要</span></a>
-  <a href="<?php echo esc_url( sk_page_url( 'page-message.php' ) ); ?>"><span class="dn">Message</span><span class="dj">代表挨拶</span></a>
-  <a href="<?php echo esc_url( sk_page_url( 'page-philosophy.php' ) ); ?>"><span class="dn">Philosophy</span><span class="dj">企業理念</span></a>
-  <a href="<?php echo esc_url( sk_page_url( 'page-service.php' ) ); ?>"><span class="dn">Service &amp; Investment</span><span class="dj">事業紹介＆投資先</span></a>
+  <a href="<?php echo esc_url( home_url( '/overview' ) ); ?>"><span class="dn">Overview</span><span class="dj">概要</span></a>
+  <a href="<?php echo esc_url( home_url( '/message' ) ); ?>"><span class="dn">Message</span><span class="dj">代表挨拶</span></a>
+  <a href="<?php echo esc_url( home_url( '/philosophy' ) ); ?>"><span class="dn">Philosophy</span><span class="dj">企業理念</span></a>
+  <a href="<?php echo esc_url( home_url( '/service' ) ); ?>"><span class="dn">Service &amp; Investment</span><span class="dj">事業紹介＆投資先</span></a>
 </div>
 
 <main>
