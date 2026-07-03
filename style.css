@@ -3,7 +3,7 @@ Theme Name: Sikumys
 Theme URI: https://example.com/sikumys
 Author: Sikumys
 Description: Corporate site theme for Sikumys based on the provided mockup (sikumys-final-draft).
-Version: 1.1.0
+Version: 1.1.2
 Text Domain: sikumys
 */
 
@@ -328,11 +328,11 @@ footer .fnav a:hover{color:var(--sky)}
 .svc-media img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
 .svc-detail .svc-media{border-bottom:0}
 .svc-detail .svc-media img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border:1px solid var(--line)}
-/* ロゴは絶対配置でタイル枠に固定（画像の実寸がタイルを押し広げ／はみ出すのを防止） */
-.inv{position:relative;overflow:hidden}
-.inv img.inv-logo{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:clamp(16px,2.4vw,30px);display:block}
+/* ロゴ画像は最大高さをpxで固定＝aspect-ratio非依存で、どの端末でも巨大化・はみ出しを防止 */
+.inv{overflow:hidden}
+.inv img.inv-logo{display:block;width:auto;height:auto;max-width:100%;max-height:clamp(96px,30vw,148px);object-fit:contain}
 /* ロゴタイルは白カードにして視認性を確保 */
-.inv.has-logo{background:#fff}
+.inv.has-logo{background:#fff;padding:clamp(16px,3vw,28px)}
 .inv.has-logo:hover{background:#fff;border-color:var(--sky);box-shadow:0 0 26px rgba(79,210,245,.28)}
 .gmedia{overflow:hidden}
 .gmedia img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border:1px solid var(--line)}
